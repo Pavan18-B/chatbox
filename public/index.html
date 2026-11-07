@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Chat</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-theme="whatsapp">
+    <div class="app-shell">
+      <div id="gate" class="panel gate-panel">
+        <div class="brand-row">
+          <div class="brand-icon">💬</div>
+          <h1>Secure Chat</h1>
+        </div>
+        <p>Enter your room details to continue.</p>
+
+        <form id="join-form">
+          <label for="user-name">Name</label>
+          <input id="user-name" name="user-name" type="text" placeholder="Your name" maxlength="18" required />
+
+          <label for="room-name">Room</label>
+          <input id="room-name" name="room-name" type="text" placeholder="Room name" maxlength="24" required />
+
+          <label for="room-password">Room password</label>
+          <input id="room-password" name="room-password" type="password" placeholder="Enter room password" required />
+
+          <button type="submit">Continue</button>
+        </form>
+
+        <p id="error-message" class="error hidden">Incorrect room password. Try again.</p>
+      </div>
+
+      <div id="chat-room" class="panel hidden chat-panel-shell">
+        <header class="chat-header">
+          <div class="header-user">
+            <div id="user-tag" class="user-badge">A</div>
+            <h2 id="room-title">Group Chat</h2>
+          </div>
+          <div class="header-actions">
+            <button id="settings-toggle" class="secondary-btn" type="button">Settings</button>
+            <button id="logout-btn" class="secondary-btn" type="button">Exit</button>
+          </div>
+        </header>
+
+        <div id="settings-panel" class="settings-panel hidden">
+          <label for="settings-name">Name</label>
+          <input id="settings-name" type="text" maxlength="18" placeholder="Your name" />
+
+          <form id="change-room-password-form" class="passcode-form">
+            <label for="private-code-change">Private code</label>
+            <input id="private-code-change" type="password" placeholder="Your private code" />
+
+            <label for="new-room-password">New room password</label>
+            <input id="new-room-password" type="password" placeholder="New room password" />
+
+            <button type="submit" class="secondary-btn">Change room password</button>
+          </form>
+
+          <div class="setting-actions">
+            <button id="clear-chat-btn" class="warning-btn" type="button">Clear Chat</button>
+          </div>
+        </div>
+
+        <div id="messages" aria-live="polite"></div>
+
+        <form id="chat-form" class="chat-form">
+          <input id="message-input" type="text" maxlength="250" placeholder="Type your message..." required />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
